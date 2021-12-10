@@ -1,0 +1,25 @@
+{% extends  "gimnasio/base.html" %}
+
+{% block content %}
+  <h1>Clases.</h1>
+  <table>
+      <tr>
+        <th>Descripcion</th>
+        <th>Dia</th>
+        <th>Hora</th>
+        <th>Sala</th>
+        <th>Costo</th>
+        <th>Profesor</th>
+      </tr>
+      {% for gimclass in gimclasses %}
+      <tr>
+        <td>gimclass.description</td>
+        <td>gimclass.day</td>
+        <td>gimclass.time</td>
+        <td>gimclass.room</td>
+        <td>gimclass.price</td>
+        <td>gimclass.teacher</td>
+      </tr>
+      {% endfor %}
+  </table>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends  "gimnasio/base.html" %}
+
+{% block content %}
+  <h1>Clientes.</h1>
+  <table>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>profesión</th>
+        <th>Teléfono</th>
+        <th>Nro. de socio</th>
+        <th>Profesor asignado</th>
+      </tr>
+      {% for gimclient in gimclient %}
+      <tr>
+        <td>gimclient.first_name</td>
+        <td>gimclient.last_name</td>
+        <td>gimclient.profession</td>
+        <td>gimclient.phone_number</td>
+        <td>gimclient.affiliate_number</td>
+        <td>gimclient.is_up_to_date</td>
+      </tr>
+      {% endfor %}
+  </table>
+{% endblock content %}
