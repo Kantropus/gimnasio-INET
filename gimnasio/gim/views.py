@@ -1,7 +1,10 @@
+from typing import ContextManager
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
+
 from .models import GimClass, GimClient
+
 def index(request):
     """The home page for the gim page."""
     return render(request, 'gimnasio/base.html')
