@@ -7,10 +7,10 @@
   </head>
   <body>
     <nav>
-      <ul>
+      <ul hx-trigger="click" hx-target="main" hx-swap="innerHTML">
         
-        <li><a>Clases.</a></li>
-        <li><a>Salas.</a></li>
+        <li><button hx-get="{% url 'gim:lessons' %}" >Clases.</button></li>
+        <li><a >Salas.</a></li>
         <li><a>Profesores.</a></li>
         <li><a>Clientes.</a></li>
 

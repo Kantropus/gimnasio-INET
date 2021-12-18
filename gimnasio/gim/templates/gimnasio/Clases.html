@@ -1,6 +1,3 @@
-{% extends  "gimnasio/base.html" %}
-
-{% block content %}
   <h1>Clases.</h1>
   <table>
       <tr>
@@ -11,15 +8,16 @@
         <th>Costo</th>
         <th>Profesor</th>
       </tr>
-      {% for gimclass in gimclasses %}
+      {% for gimlesson in gimlessons %}
       <tr>
-        <td>gimclass.description</td>
-        <td>gimclass.day</td>
-        <td>gimclass.time</td>
-        <td>gimclass.room</td>
-        <td>gimclass.price</td>
-        <td>gimclass.teacher</td>
+        <td>gimlesson.description</td>
+        <td>gimlesson.day</td>
+        <td>gimlesson.time</td>
+        <td>gimlesson.room</td>
+        <td>gimlesson.price</td>
+        <td>gimlesson.teacher</td>
       </tr>
+      {% empty %}
+        <a href="{% url 'gim:new_lesson' %}">Insertar datos de clase.</a>
       {% endfor %}
   </table>
-{% endblock content %}

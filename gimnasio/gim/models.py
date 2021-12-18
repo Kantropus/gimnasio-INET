@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.deletion import PROTECT
 # Create your models here.
 class GimRoom(models.Model):
     """Data for each room of the gim."""
@@ -9,12 +10,12 @@ class GimRoom(models.Model):
     def __str__(self) -> str:
         return f"{self.room_type} {self.location}" 
 
-class GimClass(models.Model):
-    """Data for the gim class."""
+class GimLesson(models.Model):
+    """Data for the gim lessons."""
     id = models.AutoField(primary_key=True)
-    description = models.CharField(max_length=45)
+    description = models.CharField(max_length=60)
     datetime = models.DateTimeField()
-    room = GimRoom()
+    room = models.ForeignKey(GimRoom, on_delete=PROTECT, default=None)
 
     def __str__(self) -> str:
         return self.description

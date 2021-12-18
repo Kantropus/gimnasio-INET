@@ -1,0 +1,7 @@
+{% extends  "gimnasio/base.html" %}
+
+<form action="{% url 'gimnasio:new_lesson' room.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name='submit'>Añadir clase</button>
+</form>
