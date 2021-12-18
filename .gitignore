@@ -1,1 +1,9 @@
 gimnasio_env/
+
+.vscode/
+
+gimnasio/db.sqlite3
+
+gimnasio/gimnasio/__pycache__/
+
+gimnasio/gim/__pycache__/
