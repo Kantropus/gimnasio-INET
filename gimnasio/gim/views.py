@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 
 from .models import GimLesson, GimClient, GimRoom
-from .forms import LessonForm
+from .forms import LessonForm, RoomForm
 
 def index(request):
     """The home page for the gim page."""
@@ -12,32 +12,50 @@ def index(request):
 
 def lessons(request):
     """Show list of available lessons."""
-    Lessons = GimLesson.objects.filter()
+    Lessons = GimLesson.objects.all()
     context = {'gimlessons':Lessons}
     return render(request, 'gimnasio/Clases.html', context)
 
+def rooms(request):
+    """Show list of rooms, their type, size and location."""
+    Rooms = GimRoom.objects.filter()
+    context = {'rooms': Rooms}
+    return render(request, 'gimnasio/rooms.html', context)
+#Only the gim staff can see the clients.
 @login_required
 def clients(request):
     """Show all clients of the gym, only accesible to gym staff."""
     return render(request, 'gimnasio/Clientes.html')
 
-#@login_required
-def new_lesson(request,room_id):
-    """Add a new lesson to 'lessons' table."""
-    room = GimRoom.objects.get(id=room_id)
-    if request.method != 'POST':
-        #No data submitted; create a blank form.
-        form = LessonForm()
+#Only the gim staff can add a new lesson to de database.
+@login_required
+def new_lesson(request):
+    """Insert lesson data"""
+    form = LessonForm()
     
-    else:
+    if request.method == 'POST':
         #Post data submitted; process data.
         form = LessonForm(data=request.POST)
         if form.is_valid():
-            new_lesson = form.save(commit=False)
-            new_lesson.room = room
-            new_lesson.save()
+            """Add a new lesson to 'lessons' table."""
+            form.save()
 
-        redirect('gimnasio:lessons')
+        redirect('gim:lessons')
 
-    context = {'form': form, 'room': room}
-    return render(request, 'gimnasio/new_lessons.html', context)
+    context = {'form': form}
+    return render(request, 'gimnasio/new_lesson.html', context)
+
+@login_required
+def new_room(request):
+    """Insert room data when a room is built."""
+    form = RoomForm()
+
+    if request.method == 'POST':
+        form = RoomForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+        
+        return redirect('gim:lessons')
+
+    context = {'form': form}
+    return render(request, 'gimnasio/new_room.html', context)

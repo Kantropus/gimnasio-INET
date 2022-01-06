@@ -10,9 +10,9 @@
       <ul hx-trigger="click" hx-target="main" hx-swap="innerHTML">
         
         <li><button hx-get="{% url 'gim:lessons' %}" >Clases.</button></li>
-        <li><a >Salas.</a></li>
-        <li><a>Profesores.</a></li>
-        <li><a>Clientes.</a></li>
+        <li><button hx-get="{% url 'gim:rooms' %}" >Salas.</button></li>
+        <li><button hx-get="{% url 'gim:lessons' %}" >Profesores.</button></li>
+        <li><button hx-get="{% url 'gim:lessons' %}" >Clientes.</button></li>
 
       </ul>
     </nav>

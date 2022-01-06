@@ -7,3 +7,5 @@ gimnasio/db.sqlite3
 gimnasio/gimnasio/__pycache__/
 
 gimnasio/gim/__pycache__/
+
+gimnasio/gim/migrations/__pycache__

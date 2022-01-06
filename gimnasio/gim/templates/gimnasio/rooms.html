@@ -1,0 +1,18 @@
+<h1>Rooms:</h1>
+
+<table>
+    <tr>
+        <th>location</th>
+        <th>Area (M^2)</th>
+        <th>Room Type</th>
+    </tr>
+    {% for room in rooms %}
+      <tr>
+        <td>{{ room.location }}</td>
+        <td>{{ room.area }}</td>
+        <td>{{ room.room_type }}</td>
+      </tr>
+      {% empty %}
+        <a href="{% url 'gim:new_room' %}">Insertar sala.</a>
+      {% endfor %}
+</table>

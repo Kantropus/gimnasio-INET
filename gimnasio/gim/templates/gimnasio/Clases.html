@@ -2,22 +2,20 @@
   <table>
       <tr>
         <th>Descripcion</th>
-        <th>Dia</th>
-        <th>Hora</th>
+        <th>Dia y hora</th>
         <th>Sala</th>
         <th>Costo</th>
         <th>Profesor</th>
       </tr>
       {% for gimlesson in gimlessons %}
       <tr>
-        <td>gimlesson.description</td>
-        <td>gimlesson.day</td>
-        <td>gimlesson.time</td>
-        <td>gimlesson.room</td>
-        <td>gimlesson.price</td>
-        <td>gimlesson.teacher</td>
+        <td>{{ gimlesson.description }}</td>
+        <td>{{ gimlesson.datetime }}</td>
+        <td>{{ gimlesson.room }}</td>
+        <td>{{ gimlesson.price }}</td>
+        <td>{{ gimlesson.teacher }}</td>
       </tr>
       {% empty %}
-        <a href="{% url 'gim:new_lesson' %}">Insertar datos de clase.</a>
+        <a href="{% url 'gim:new_lesson' %}">Insertar clase.</a>
       {% endfor %}
   </table>
