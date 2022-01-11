@@ -1,0 +1,23 @@
+<h1>Teachers.</h1>
+<table>
+    <tr>
+      <th>DNI</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Phone number</th>
+      <th>Birthdate</th>
+      <th>Hiring date</th>
+    </tr>
+    {% for teacher in teachers %}
+    <tr>
+      <td>{{ teacher.dni }}</td>
+      <td>{{ teacher.first_name }}</td>
+      <td>{{ teacher.last_name }}</td>
+      <td>{{ teacher.phone_number }}</td>
+      <td>{{ teacher.birthdate }}</td>
+      <td>{{ teacher.hiring_date }}</td>
+    </tr>
+    {% empty %}
+      <button hx-get="{% url 'gim:new_teacher' %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Insert teacher data.</button>
+    {% endfor %}
+</table>

@@ -1,5 +1,5 @@
 <form action="{% url 'gim:new_room' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button name='submit'>Añadir sala</button>
+    <button name='submit'>Add room</button>
 </form>

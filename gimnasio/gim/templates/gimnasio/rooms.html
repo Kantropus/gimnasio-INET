@@ -14,5 +14,6 @@
       </tr>
       {% empty %}
         <a href="{% url 'gim:new_room' %}">Insertar sala.</a>
+        <button hx-get="{% url 'gim:new_room' %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Insert room.</button>
       {% endfor %}
 </table>

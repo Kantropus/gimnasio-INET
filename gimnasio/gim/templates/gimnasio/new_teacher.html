@@ -1,0 +1,5 @@
+<form action="{% url 'gim:new_teacher' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name='submit'>Add teacher</button>
+</form>

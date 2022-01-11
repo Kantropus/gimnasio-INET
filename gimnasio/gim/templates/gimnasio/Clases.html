@@ -1,11 +1,11 @@
-  <h1>Clases.</h1>
+  <h1>Lessons.</h1>
   <table>
       <tr>
-        <th>Descripcion</th>
-        <th>Dia y hora</th>
-        <th>Sala</th>
-        <th>Costo</th>
-        <th>Profesor</th>
+        <th>Description</th>
+        <th>Date and time</th>
+        <th>Room</th>
+        <th>Price</th>
+        <th>Teacher</th>
       </tr>
       {% for gimlesson in gimlessons %}
       <tr>
@@ -16,6 +16,6 @@
         <td>{{ gimlesson.teacher }}</td>
       </tr>
       {% empty %}
-        <a href="{% url 'gim:new_lesson' %}">Insertar clase.</a>
+        <button hx-get="{% url 'gim:new_lesson' %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Insert lesson.</button>
       {% endfor %}
   </table>

@@ -9,14 +9,16 @@
         <th>Nro. de socio</th>
         <th>Profesor asignado</th>
       </tr>
-      {% for gimclient in gimclient %}
+      {% for gimclient in gimclients %}
       <tr>
-        <td>gimclient.first_name</td>
-        <td>gimclient.last_name</td>
-        <td>gimclient.profession</td>
-        <td>gimclient.phone_number</td>
-        <td>gimclient.affiliate_number</td>
-        <td>gimclient.is_up_to_date</td>
+        <td>{{ gimclient.first_name }}</td>
+        <td>{{ gimclient.last_name }}</td>
+        <td>{{ gimclient.profession }}</td>
+        <td>{{ gimclient.phone_number }}</td>
+        <td>{{ gimclient.affiliate_number }}</td>
+        <td>{{ gimclient.is_up_to_date }}</td>
       </tr>
+      {% empty %}
+        <button hx-get="{% url 'gim:new_lesson' %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Insert client data.</button>
       {% endfor %}
   </table>
