@@ -12,16 +12,13 @@
         <li><button hx-get="{% url 'gim:lessons' %}" >Lessons.</button></li>
         <li><button hx-get="{% url 'gim:rooms' %}" >Rooms.</button></li>
         <li><button hx-get="{% url 'gim:teachers' %}" >Teachers.</button></li>
-        <li><button hx-get="{% url 'gim:clients' %}" >Clients.</button></li>
+        <li><button hx-get="{% url 'gim:teachers' %}" >Clients.</button></li>
 
       </ul>
     </nav>
 
     <main>
-      {% block content %}
         <h1>Gim Page.</h1>
-        
-      {% endblock content %}
       <script src="https://unpkg.com/htmx.org@1.6.1"></script>
     </main>
   </body>

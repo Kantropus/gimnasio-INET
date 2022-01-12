@@ -7,9 +7,9 @@ class GimRoom(models.Model):
     location = models.CharField(max_length=45)
     area = models.IntegerField()
     room_type = models.CharField(max_length=45)
+
     def __str__(self) -> str:
         return f"{self.room_type} {self.location}" 
-
 
 class GimTeacher(models.Model):
     """Data of each gim teacher. DNI means 'National Identity Document' in spanish."""
@@ -19,8 +19,10 @@ class GimTeacher(models.Model):
     phone_number = models.IntegerField()
     birthdate = models.DateField()
     hiring_date = models.DateField()
+
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}" 
+        
 class GimClient(models.Model):
     affiliate_number = models.IntegerField(primary_key=True)
     profession = models.CharField(max_length=45)
@@ -29,6 +31,7 @@ class GimClient(models.Model):
     address = models.TextField(max_length=45)
     phone_number = models.PositiveBigIntegerField()
     is_up_to_date = models.BooleanField()
+
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"
     

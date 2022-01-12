@@ -13,7 +13,7 @@ def index(request):
 def lessons(request):
     """Show list of available lessons."""
     Lessons = GimLesson.objects.all()
-    context = {'gimlessons':Lessons}
+    context = {'gimlessons': Lessons}
     return render(request, 'gimnasio/Clases.html', context)
 
 def rooms(request):
