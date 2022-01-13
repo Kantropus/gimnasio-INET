@@ -8,24 +8,24 @@ from .forms import LessonForm, RoomForm, TeacherForm
 
 def index(request):
     """The home page for the gim page."""
-    return render(request, 'gimnasio/base.html')
+    return render(request, 'gim_page/base.html')
 
 def lessons(request):
     """Show list of available lessons."""
     Lessons = GimLesson.objects.all()
     context = {'gimlessons': Lessons}
-    return render(request, 'gimnasio/Clases.html', context)
+    return render(request, 'gim_page/Clases.html', context)
 
 def rooms(request):
     """Show list of rooms, their type, size and location."""
     Rooms = GimRoom.objects.filter()
     context = {'rooms': Rooms}
-    return render(request, 'gimnasio/rooms.html', context)
+    return render(request, 'gim_page/rooms.html', context)
 #Only the gim staff can see the clients.
 @login_required
 def clients(request):
     """Show all clients of the gym, only accesible to gym staff."""
-    return render(request, 'gimnasio/Clientes.html')
+    return render(request, 'gim_page/Clientes.html')
 
 #Only the gim staff can add a new lesson to de database.
 @login_required
@@ -43,7 +43,7 @@ def new_lesson(request):
         return redirect('gim:lessons')
 
     context = {'form': form}
-    return render(request, 'gimnasio/new_lesson.html', context)
+    return render(request, 'gim_page/new_lesson.html', context)
 
 @login_required
 def new_room(request):
@@ -58,7 +58,7 @@ def new_room(request):
         return redirect('gim:lessons')
 
     context = {'form': form}
-    return render(request, 'gimnasio/new_room.html', context)
+    return render(request, 'gim_page/new_room.html', context)
 
 @login_required
 def new_teacher(request):
@@ -74,10 +74,10 @@ def new_teacher(request):
 
     context = {'form': form}
 
-    return render(request, 'gimnasio/new_teacher.html', context)
+    return render(request, 'gim_page/new_teacher.html', context)
 
 def teachers(request):
     """Show list of rooms, their type, size and location."""
     Teachers = GimTeacher.objects.filter()
     context = {'teachers': Teachers}
-    return render(request, 'gimnasio/teachers.html', context)
+    return render(request, 'gim_page/teachers.html', context)

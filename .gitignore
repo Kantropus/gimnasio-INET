@@ -2,10 +2,10 @@ gimnasio_env/
 
 .vscode/
 
-gimnasio/db.sqlite3
+gim_page/db.sqlite3
 
-gimnasio/gimnasio/__pycache__/
+gim_page/gimnasio/__pycache__/
 
-gimnasio/gim/__pycache__/
+gim_page/gim/__pycache__/
 
-gimnasio/gim/migrations/__pycache__
+gim_page/gim/migrations/__pycache__
