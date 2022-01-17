@@ -17,11 +17,23 @@
       </ul>
     </nav>
 
+    {% if user.is_authenticated %}
+    Hello, {{ user.username }}.
+      <a href="{% url 'users:logout' %}">Log out</a>
+    {% else %}
+      <a href="{% url 'users:register' %}">Register</a> -
+      <a href="{% url 'users:login' %}">Log in</a>
+    {% endif %}
+    
+    <!-- I want to modify the 'main' tag whit HTMX for learning purposes, but i will use this template on the 'users' app. -->
+    {% block content %}
+
     <main>
         <h1>Gim Page.</h1>
       <script src="https://unpkg.com/htmx.org@1.6.1"></script>
     </main>
-  </body>
-  
 
+    {% endblock content %}
+
+  </body>
 </html>
