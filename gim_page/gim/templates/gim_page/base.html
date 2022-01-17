@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html>
   <head>
+    {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <style src="gim_page\gim\templates\gim_page\styles\base.css"></style>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
   </head>
   <body>
-    <nav>
-      <ul hx-trigger="click" hx-target="main" hx-swap="innerHTML">
-        
-        <li><button hx-get="{% url 'gim:lessons' %}" >Lessons.</button></li>
-        <li><button hx-get="{% url 'gim:rooms' %}" >Rooms.</button></li>
-        <li><button hx-get="{% url 'gim:teachers' %}" >Teachers.</button></li>
-        <li><button hx-get="{% url 'gim:teachers' %}" >Clients.</button></li>
-
-      </ul>
-    </nav>
-
-    {% if user.is_authenticated %}
-    Hello, {{ user.username }}.
-      <a href="{% url 'users:logout' %}">Log out</a>
-    {% else %}
-      <a href="{% url 'users:register' %}">Register</a> -
-      <a href="{% url 'users:login' %}">Log in</a>
-    {% endif %}
+    <div id="general-container">
+      <div id="nav-bar">
+        <nav>
+          <ul hx-trigger="click" hx-target="main" hx-swap="innerHTML">
+            
+            <li><button hx-get="{% url 'gim:lessons' %}" >Lessons.</button></li>
+            <li><button hx-get="{% url 'gim:rooms' %}" >Rooms.</button></li>
+            <li><button hx-get="{% url 'gim:teachers' %}" >Teachers.</button></li>
+            <li><button hx-get="{% url 'gim:clients' %}" >Clients.</button></li>
     
-    <!-- I want to modify the 'main' tag whit HTMX for learning purposes, but i will use this template on the 'users' app. -->
-    {% block content %}
-
-    <main>
-        <h1>Gim Page.</h1>
-      <script src="https://unpkg.com/htmx.org@1.6.1"></script>
-    </main>
-
-    {% endblock content %}
-
+          </ul>
+        </nav>
+    
+        {% if user.is_authenticated %}
+        Hello, {{ user.username }}.
+          <a href="{% url 'users:logout' %}">Log out</a>
+        {% else %}
+          <a href="{% url 'users:register' %}">Register</a> -
+          <a href="{% url 'users:login' %}">Log in</a>
+        {% endif %}
+      </div>
+      
+      <div id="main-content">
+      <!-- I want to modify the 'main' tag whit HTMX for learning purposes, but i will use this template on the 'users' app. -->
+        {% block content %}
+  
+        <main>
+            <h1>Gim Page.</h1>
+          <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+        </main>
+  
+        {% endblock content %}
+  
+      </div>
+    </div>
   </body>
 </html>

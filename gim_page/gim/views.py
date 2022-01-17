@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 
 from .models import GimLesson, GimClient, GimRoom, GimTeacher
-from .forms import LessonForm, RoomForm, TeacherForm
+from .forms import ClientForm, LessonForm, RoomForm, TeacherForm
 
 def index(request):
     """The home page for the gim page."""
@@ -25,7 +25,7 @@ def rooms(request):
 @login_required
 def clients(request):
     """Show all clients of the gym, only accesible to gym staff."""
-    return render(request, 'gim_page/Clientes.html')
+    return render(request, 'gim_page/clients.html')
 
 #Only the gim staff can add a new lesson to de database.
 @login_required
@@ -81,3 +81,18 @@ def teachers(request):
     Teachers = GimTeacher.objects.filter()
     context = {'teachers': Teachers}
     return render(request, 'gim_page/teachers.html', context)
+
+def new_client(request):
+    """Save client data."""
+    form = ClientForm()
+
+    if request.method == 'POST':
+        form = ClientForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+
+        return redirect('gim:clients')
+
+    context = {'form': form}
+
+    return render(request, 'gim_page/clients.html', context)

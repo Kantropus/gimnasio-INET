@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import fields
-from .models import GimLesson, GimRoom, GimTeacher
+from .models import GimClient, GimLesson, GimRoom, GimTeacher
 
 """Forms used by the gim staff to create data."""
 
@@ -22,3 +22,8 @@ class TeacherForm(forms.ModelForm):
     class Meta:
         model = GimTeacher
         fields = ['dni', 'first_name', 'last_name', 'phone_number', 'birthdate', 'hiring_date']
+
+class ClientForm(forms.ModelForm):
+    class Meta:
+        model = GimClient
+        fields = ['affiliate_number', 'profession', 'first_name', 'last_name', 'address', 'phone_number', 'is_up_to_date']
