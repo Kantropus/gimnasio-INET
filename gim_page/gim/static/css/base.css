@@ -13,6 +13,8 @@ table{
 td, th{
   border-left: 1px solid black;
   border-right: 1px solid black;
+  padding: 5px;
+  max-width: 221px;
 }
 
 #general-container{
