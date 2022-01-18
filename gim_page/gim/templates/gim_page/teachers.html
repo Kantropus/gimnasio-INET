@@ -1,4 +1,4 @@
-<h1>Teachers.</h1>
+<h1>Teachers:</h1>
 <table>
     <tr>
       <th>DNI</th>
@@ -8,7 +8,7 @@
       <th>Birthdate</th>
       <th>Hiring date</th>
     </tr>
-    {% for teacher in teachers %}
+  {% for teacher in teachers %}
     <tr>
       <td>{{ teacher.dni }}</td>
       <td>{{ teacher.first_name }}</td>
@@ -17,7 +17,9 @@
       <td>{{ teacher.birthdate }}</td>
       <td>{{ teacher.hiring_date }}</td>
     </tr>
-    {% empty %}
-      <button hx-get="{% url 'gim:new_teacher' %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Insert teacher data.</button>
-    {% endfor %}
+  {% endfor %}
 </table>
+
+{% if user.is_authenticated %}
+  <button class="insert-button" hx-get="{% url 'gim:new_teacher' %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Insert teacher data.</button>
+{% endif %}

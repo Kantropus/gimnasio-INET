@@ -1,4 +1,4 @@
-  <h1>Lessons.</h1>
+  <h1>Lessons:</h1>
   <table>
       <tr>
         <th>Description</th>
@@ -7,7 +7,7 @@
         <th>Price</th>
         <th>Teacher</th>
       </tr>
-      {% for gimlesson in gimlessons %}
+    {% for gimlesson in gimlessons %}
       <tr>
         <td>{{ gimlesson.description }}</td>
         <td>{{ gimlesson.datetime }}</td>
@@ -15,7 +15,9 @@
         <td>{{ gimlesson.price }}</td>
         <td>{{ gimlesson.teacher }}</td>
       </tr>
-      {% empty %}
-        <button hx-get="{% url 'gim:new_lesson' %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Insert lesson.</button>
-      {% endfor %}
+    {% endfor %}
   </table>
+
+{% if user.is_authenticated %}
+  <button class="insert-button" hx-get="{% url 'gim:new_lesson' %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Insert lesson.</button>
+{% endif %}

@@ -9,6 +9,7 @@
   <body>
     <div id="general-container">
       <div id="nav-bar">
+        <h1>GimLogo</h1>
         <nav>
           <ul hx-trigger="click" hx-target="main" hx-swap="innerHTML">
             
@@ -18,15 +19,15 @@
             <li><button hx-get="{% url 'gim:clients' %}" >Clients.</button></li>
     
           </ul>
+          {% if user.is_authenticated %}
+          Hello, {{ user.username }}.
+            <a href="{% url 'users:logout' %}">Log out</a>
+          {% else %}
+            <a href="{% url 'users:register' %}">Register</a> -
+            <a href="{% url 'users:login' %}">Log in</a>
+          {% endif %}
         </nav>
     
-        {% if user.is_authenticated %}
-        Hello, {{ user.username }}.
-          <a href="{% url 'users:logout' %}">Log out</a>
-        {% else %}
-          <a href="{% url 'users:register' %}">Register</a> -
-          <a href="{% url 'users:login' %}">Log in</a>
-        {% endif %}
       </div>
       
       <div id="main-content">

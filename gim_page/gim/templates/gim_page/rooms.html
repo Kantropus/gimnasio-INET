@@ -6,14 +6,15 @@
         <th>Area (M^2)</th>
         <th>Room Type</th>
     </tr>
-    {% for room in rooms %}
+  {% for room in rooms %}
       <tr>
         <td>{{ room.location }}</td>
         <td>{{ room.area }}</td>
         <td>{{ room.room_type }}</td>
       </tr>
-      {% empty %}
-        <a href="{% url 'gim:new_room' %}">Insertar sala.</a>
-        <button hx-get="{% url 'gim:new_room' %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Insert room.</button>
-      {% endfor %}
+  {% endfor %}
 </table>
+
+{% if user.is_authenticated %}
+  <button class="insert-button" hx-get="{% url 'gim:new_room' %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Insert room.</button>
+{% endif %}

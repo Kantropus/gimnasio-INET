@@ -4,21 +4,24 @@
       <tr>
         <th>First name</th>
         <th>Last name</th>
+        <th>Address</th>
         <th>Profession</th>
         <th>Phone number</th>
         <th>Affiliate number</th>
         <th>Is up to date:</th>
       </tr>
-      {% for gimclient in gimclients %}
+    {% for client in clients %}
       <tr>
-        <td>{{ gimclient.first_name }}</td>
-        <td>{{ gimclient.last_name }}</td>
-        <td>{{ gimclient.profession }}</td>
-        <td>{{ gimclient.phone_number }}</td>
-        <td>{{ gimclient.affiliate_number }}</td>
-        <td>{{ gimclient.is_up_to_date }}</td>
+        <td>{{ client.first_name }}</td>
+        <td>{{ client.last_name }}</td>
+        <td>{{ client.address }}</td>
+        <td>{{ client.profession }}</td>
+        <td>{{ client.phone_number }}</td>
+        <td>{{ client.affiliate_number }}</td>
+        <td>{{ client.is_up_to_date }}</td>
       </tr>
-      {% empty %}
-        <button hx-get="{% url 'gim:new_lesson' %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Insert client data.</button>
-      {% endfor %}
-  </table>
+    {% endfor %}
+</table>
+{% if user.is_authenticated %}
+  <button class="insert-button" hx-get="{% url 'gim:new_client' %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Insert client data.</button>
+{% endif %}
