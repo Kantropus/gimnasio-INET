@@ -16,8 +16,9 @@
             <li><button hx-get="{% url 'gim:lessons' %}" >Lessons.</button></li>
             <li><button hx-get="{% url 'gim:rooms' %}" >Rooms.</button></li>
             <li><button hx-get="{% url 'gim:teachers' %}" >Teachers.</button></li>
+            {% if user.is_authenticated %}
             <li><button hx-get="{% url 'gim:clients' %}" >Clients.</button></li>
-    
+            {% endif %}
           </ul>
           {% if user.is_authenticated %}
           Hello, {{ user.username }}.
@@ -31,17 +32,17 @@
       </div>
       
       <div id="main-content">
-      <!-- I want to modify the 'main' tag whit HTMX for learning purposes, but i will use this template on the 'users' app. -->
-        {% block content %}
-  
+      
+      
         <main>
+          <!-- I want to modify the 'main' tag whit HTMX for learning purposes, but i will use this template on the 'users' app. -->
+          {% block content %}
             <h1>Gim Page.</h1>
-          <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+          {% endblock content %}
         </main>
-  
-        {% endblock content %}
-  
+        
       </div>
     </div>
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
   </body>
 </html>

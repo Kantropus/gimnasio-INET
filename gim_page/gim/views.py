@@ -36,7 +36,7 @@ def clients(request):
     Clients = GimClient.objects.all()
     context = {'clients': Clients}
     return render(request, 'gim_page/clients.html', context)
-
+    
 #Only the gim staff can add a new lesson to de database.
 @login_required
 def new_lesson(request):

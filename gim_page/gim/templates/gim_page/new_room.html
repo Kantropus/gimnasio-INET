@@ -1,5 +1,5 @@
 <form action="{% url 'gim:new_room' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button name='submit'>Add room</button>
+    <button name='submit' hx-post="{% url 'gim:new_room' %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Add room</button>
 </form>
