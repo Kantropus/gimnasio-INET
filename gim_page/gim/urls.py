@@ -19,4 +19,7 @@ urlpatterns = [
     path('new_room', views.new_room, name="new_room"),
     path('new_teacher', views.new_teacher, name='new_teacher'),
     path('new_client', views.new_client, name='new_client'),
+
+    #Edit the data
+    path('edit_lesson/<int:lesson_id>', views.edit_lesson, name='edit_lesson'),
 ]

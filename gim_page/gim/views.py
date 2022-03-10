@@ -86,7 +86,7 @@ def new_teacher(request):
 
     return render(request, 'gim_page/new_teacher.html', context)
 
-
+@login_required
 def new_client(request):
     """Save client data."""
     form = ClientForm()
@@ -101,3 +101,22 @@ def new_client(request):
     context = {'form': form}
 
     return render(request, 'gim_page/new_client.html', context)
+
+@login_required
+def edit_lesson(request, lesson_id):
+    """Edit a tuple of the lesson table."""
+    lesson = GimLesson.objects.get(id=lesson_id)
+
+    if request.method == 'POST':
+        form = LessonForm(instance=lesson, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('gim:lessons')
+    else:
+        #Inicial request, simply show the data to the user
+        form = LessonForm(instance=lesson)
+
+    context =  {'gimlesson':lesson, 'form':form}
+
+    return render(request, 'gim_page/edit_lesson.html', context)
+    

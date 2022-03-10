@@ -1,0 +1,6 @@
+<form action="{% url 'gim:edit_lesson' gimlesson.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name='submit' hx-post="{% url 'gim:edit_lesson' gimlesson.id %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Edit lesson</button>
+
+</form>
