@@ -22,4 +22,7 @@ urlpatterns = [
 
     #Edit the data
     path('edit_lesson/<int:lesson_id>', views.edit_lesson, name='edit_lesson'),
+    path('edit_room/<int:room_id>', views.edit_room, name='edit_room'),
+    path('edit_teacher/<int:teacher_id>', views.edit_teacher, name='edit_teacher'),
+    path('edit_client/<int:client_id>', views.edit_client, name='edit_client'),
 ]

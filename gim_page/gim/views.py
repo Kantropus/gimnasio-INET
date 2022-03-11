@@ -15,7 +15,7 @@ def lessons(request):
     """Show list of available lessons."""
     Lessons = GimLesson.objects.all()
     context = {'gimlessons': Lessons}
-    return render(request, 'gim_page/Clases.html', context)
+    return render(request, 'gim_page/lessons.html', context)
 
 def rooms(request):
     """Show list of rooms, their type, size and location."""
@@ -65,7 +65,7 @@ def new_room(request):
         if form.is_valid():
             form.save()
         
-        return redirect('gim:lessons')
+        return redirect('gim:rooms')
 
     context = {'form': form}
     return render(request, 'gim_page/new_room.html', context)
@@ -120,3 +120,56 @@ def edit_lesson(request, lesson_id):
 
     return render(request, 'gim_page/edit_lesson.html', context)
     
+@login_required
+def edit_room(request, room_id):
+    """Edit a tuple of the room table."""
+    room = GimRoom.objects.get(id=room_id)
+
+    if request.method == 'POST':
+        form = RoomForm(instance=room, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('gim:rooms')
+    else:
+        #Inicial request, simply show the data to the user
+        form = RoomForm(instance=room)
+
+    context =  {'gimroom':room, 'form':form}
+
+    return render(request, 'gim_page/edit_room.html', context)
+
+@login_required
+def edit_teacher(request, teacher_id):
+    """Edit a tuple of the teacher table."""
+    teacher = GimTeacher.objects.get(dni=teacher_id)
+
+    if request.method == 'POST':
+        form = TeacherForm(instance=teacher, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('gim:teachers')
+    else:
+        #Inicial request, simply show the data to the user
+        form = TeacherForm(instance=teacher)
+
+    context =  {'gimteacher':teacher, 'form':form}
+
+    return render(request, 'gim_page/edit_teacher.html', context)
+
+@login_required
+def edit_client(request, client_id):
+    """Edit a tuple of the client table."""
+    client = GimClient.objects.get(affiliate_number=client_id)
+
+    if request.method == 'POST':
+        form = ClientForm(instance=client, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('gim:clients')
+    else:
+        #Inicial request, simply show the data to the user
+        form = ClientForm(instance=client)
+
+    context =  {'gimclient':client, 'form':form}
+
+    return render(request, 'gim_page/edit_client.html', context)

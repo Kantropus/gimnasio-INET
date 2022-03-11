@@ -15,10 +15,9 @@
         <td>{{ gimlesson.room }}</td>
         <td>{{ gimlesson.price }}</td>
         <td>{{ gimlesson.teacher }}</td>
-        <td><button hx-trigger="click" hx-target="main" hx-swap="innerHTML" hx-get="{% url 'gim:edit_lesson' gimlesson.id %}">Edit Lesson.</button></td>
+        <td><button hx-trigger="click" hx-target="main" hx-swap="innerHTML" hx-get="{% url 'gim:edit_lesson' gimlesson.id %}">Edit lesson.</button></td>
       </tr>
-      
-     {% endfor %}
+    {% endfor %}
     {% else %}
      {% for gimlesson in gimlessons %}
       <tr>

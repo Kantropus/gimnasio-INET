@@ -10,17 +10,32 @@
         <th>Affiliate number</th>
         <th>Is up to date:</th>
       </tr>
-    {% for client in clients %}
-      <tr>
-        <td>{{ client.first_name }}</td>
-        <td>{{ client.last_name }}</td>
-        <td>{{ client.address }}</td>
-        <td>{{ client.profession }}</td>
-        <td>{{ client.phone_number }}</td>
-        <td>{{ client.affiliate_number }}</td>
-        <td>{{ client.is_up_to_date }}</td>
-      </tr>
-    {% endfor %}
+  {% if user.is_authenticated %}
+  {% for client in clients %}
+  <tr>
+    <td>{{ client.first_name }}</td>
+    <td>{{ client.last_name }}</td>
+    <td>{{ client.address }}</td>
+    <td>{{ client.profession }}</td>
+    <td>{{ client.phone_number }}</td>
+    <td>{{ client.affiliate_number }}</td>
+    <td>{{ client.is_up_to_date }}</td>
+    <td><button hx-trigger="click" hx-target="main" hx-swap="innerHTML" hx-get="{% url 'gim:edit_client' client.affiliate_number %}">Edit client.</button></td>
+  </tr>
+  {% endfor %}
+  {% else %}
+  {% for client in clients %}
+    <tr>
+      <td>{{ client.first_name }}</td>
+      <td>{{ client.last_name }}</td>
+      <td>{{ client.address }}</td>
+      <td>{{ client.profession }}</td>
+      <td>{{ client.phone_number }}</td>
+      <td>{{ client.affiliate_number }}</td>
+      <td>{{ client.is_up_to_date }}</td>
+    </tr>
+  {% endfor %}
+  {% endif %}
 </table>
 {% if user.is_authenticated %}
   <button class="insert-button" hx-get="{% url 'gim:new_client' %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Insert client data.</button>

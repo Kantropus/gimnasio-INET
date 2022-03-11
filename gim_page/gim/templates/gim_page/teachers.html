@@ -8,6 +8,19 @@
       <th>Birthdate</th>
       <th>Hiring date</th>
     </tr>
+  {% if user.is_authenticated %}
+  {% for teacher in teachers %}
+  <tr>
+    <td>{{ teacher.dni }}</td>
+    <td>{{ teacher.first_name }}</td>
+    <td>{{ teacher.last_name }}</td>
+    <td>{{ teacher.phone_number }}</td>
+    <td>{{ teacher.birthdate }}</td>
+    <td>{{ teacher.hiring_date }}</td>
+    <td><button hx-trigger="click" hx-target="main" hx-swap="innerHTML" hx-get="{% url 'gim:edit_teacher' teacher.dni %}">Edit teacher.</button></td>
+  </tr>
+  {% endfor %}
+  {% else %}
   {% for teacher in teachers %}
     <tr>
       <td>{{ teacher.dni }}</td>
@@ -18,6 +31,7 @@
       <td>{{ teacher.hiring_date }}</td>
     </tr>
   {% endfor %}
+  {% endif %}
 </table>
 
 {% if user.is_authenticated %}

@@ -1,0 +1,6 @@
+<form>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name='submit' hx-post="{% url 'gim:edit_client' gimclient.affiliate_number %}" hx-trigger="click" hx-target="main" hx-swap="innerHTML">Edit client</button>
+
+</form>

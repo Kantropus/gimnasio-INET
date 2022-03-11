@@ -6,13 +6,24 @@
         <th>Area (M^2)</th>
         <th>Room Type</th>
     </tr>
+  {% if user.is_authenticated %}
   {% for room in rooms %}
-      <tr>
-        <td>{{ room.location }}</td>
-        <td>{{ room.area }}</td>
-        <td>{{ room.room_type }}</td>
-      </tr>
+    <tr>
+      <td>{{ room.location }}</td>
+      <td>{{ room.area }}</td>
+      <td>{{ room.room_type }}</td>
+      <td><button hx-trigger="click" hx-target="main" hx-swap="innerHTML" hx-get="{% url 'gim:edit_room' room.id %}">Edit room.</button></td>
+    </tr>
   {% endfor %}
+  {% else %}
+  {% for room in rooms %}
+    <tr>
+      <td>{{ room.location }}</td>
+      <td>{{ room.area }}</td>
+      <td>{{ room.room_type }}</td>
+    </tr>
+  {% endfor %}
+  {% endif %}
 </table>
 
 {% if user.is_authenticated %}
